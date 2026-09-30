@@ -1,0 +1,2 @@
+// Features module placeholder — populated from M3 onward.
+// Guardrail: no file under Features/ may `import Supabase`.

@@ -1,0 +1,54 @@
+:root {
+  /* Light — shared with the iOS DesignSystem tokens */
+  --bg: #ffffff;
+  --surface: #f7f8fa;
+  --surface-2: #eef0f4;
+  --ink: #14171f;
+  --ink-2: #5b6270;
+  --ink-3: #878e9b;
+  --line: #e3e6eb;
+  --accent: #1f5fd6;
+  --accent-press: #174bad;
+  --accent-tint: #e8f0fc;
+  --sidebar-width: 240px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+[data-theme='dark'] {
+  --bg: #0f1115;
+  --surface: #171a21;
+  --surface-2: #1f232c;
+  --ink: #f3f5f8;
+  --ink-2: #a9b0bd;
+  --ink-3: #7c8391;
+  --line: #2a2f3a;
+  --accent: #3b78eb;
+  --accent-press: #2f66d1;
+  --accent-tint: #16223a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}

@@ -1,0 +1,23 @@
+# SwiftLint — Loose Tag Reporter POC
+
+disabled_rules:
+  - trailing_whitespace
+
+opt_in_rules:
+  - explicit_init
+
+included:
+  - LooseTagReporter
+  - Packages/TagReportingCore/Sources
+  - LooseTagReporterTests
+
+excluded:
+  - .build
+  - DerivedData
+
+line_length:
+  warning: 140
+  error: 180
+
+identifier_name:
+  min_length: 2

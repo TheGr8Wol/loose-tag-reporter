@@ -1,0 +1,50 @@
+# Xcode / Swift
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+.swiftpm/
+Package.resolved
+
+# XcodeGen output (regenerate with `xcodegen generate`)
+LooseTagReporter.xcodeproj/
+
+# Secrets — never commit
+LooseTagReporter/Config/Secrets.xcconfig
+.env
+.env.*
+*.pem
+*.key
+*.p8
+*.p12
+*.mobileprovision
+
+# Local databases
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+
+# Supabase CLI local state
+supabase/.branches/
+supabase/.temp/
+
+# Node / web dashboard
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.log
+npm-debug.log*
+
+# macOS / editors
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

@@ -1,0 +1,32 @@
+{
+  "id": "a0000000-0000-4000-8000-000000000001",
+  "storeCode": "demo-store",
+  "name": "Demo Store",
+  "isMultiFloor": true,
+  "seedVersion": "1",
+  "floors": [
+    { "code": "B1", "label": "Basement", "sortOrder": 0 },
+    { "code": "GF", "label": "Ground Floor", "sortOrder": 1 },
+    { "code": "L1", "label": "Level 1", "sortOrder": 2 }
+  ],
+  "sfExclusionsByFloor": {
+    "B1": ["entrance"]
+  },
+  "bohRoomsByFloor": {
+    "B1": [
+      { "code": "receiving", "label": "Receiving Dock" },
+      { "code": "stockroom", "label": "Stockroom" },
+      { "code": "break_room", "label": "Staff Break Room" },
+      { "code": "Other", "label": "Other?", "isOther": true }
+    ],
+    "GF": [
+      { "code": "stockroom", "label": "Stockroom" },
+      { "code": "Other", "label": "Other?", "isOther": true }
+    ],
+    "L1": [
+      { "code": "stockroom", "label": "Stockroom" },
+      { "code": "office", "label": "Store Office" },
+      { "code": "Other", "label": "Other?", "isOther": true }
+    ]
+  }
+}

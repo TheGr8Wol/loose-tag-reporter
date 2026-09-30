@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      simulator:
+        description: "iOS Simulator device name for the iOS job"
+        required: false
+        default: "iPhone 16"
+
+jobs:
+  core:
+    name: TagReportingCore (macOS)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & test Core
+        run: |
+          cd Packages/TagReportingCore
+          swift build
+          swift test
+
+  guardrails:
+    name: Layering & silent-app guardrails
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run guardrails
+        run: bash Scripts/layering_guardrail.sh
+
+  ios:
+    name: iOS build & test (manual)
+    # Manual-only: this copy of the app target has not been compiled yet (see README,
+    # "Status and limitations"). Run it from the Actions tab once it has been verified.
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Resolve SPM
+        run: xcodebuild -resolvePackageDependencies -project LooseTagReporter.xcodeproj -scheme LooseTagReporter
+      - name: Build for simulator
+        run: |
+          xcodebuild \
+            -project LooseTagReporter.xcodeproj \
+            -scheme LooseTagReporter \
+            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug \
+            build \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Test on simulator
+        run: |
+          xcodebuild \
+            -project LooseTagReporter.xcodeproj \
+            -scheme LooseTagReporter \
+            -destination "platform=iOS Simulator,name=${{ inputs.simulator }}" \
+            -configuration Debug \
+            test \
+            CODE_SIGNING_ALLOWED=NO
+
+  web:
+    name: Web dashboard
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web-dashboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web-dashboard/package-lock.json
+      - run: npm ci
+      - run: npm run build

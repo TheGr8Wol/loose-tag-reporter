@@ -1,0 +1,11 @@
+project_id = "REPLACE_AFTER_PROVISIONING"
+
+[api]
+enabled = true
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true

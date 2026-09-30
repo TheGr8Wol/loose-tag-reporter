@@ -1,0 +1,35 @@
+{
+  "note": "Synthetic fixtures for the demo article-number layout PPP-IIIIIII-CC-SSS.",
+  "samples": [
+    {
+      "id": "canonical-demo-tag",
+      "raw": "100-2000101-30-103(12-34)",
+      "expected": { "itemCode": "2000101", "colourCode": "30", "sizeCode": "103", "accept": true }
+    },
+    {
+      "id": "unknown-item",
+      "raw": "2999999",
+      "expected": { "itemCode": "2999999", "accept": true, "note": "lookup yields Unknown item in product ref" }
+    },
+    {
+      "id": "enriched-item",
+      "raw": "2000101",
+      "expected": { "itemCode": "2000101", "itemName": "Demo Cotton Crew T-Shirt", "accept": true }
+    },
+    {
+      "id": "bare-ean",
+      "raw": "2012345678903",
+      "expected": { "accept": false, "reason": "A bare barcode must not auto-submit as an article number" }
+    },
+    {
+      "id": "reject-internal-code",
+      "raw": "QX107",
+      "expected": { "accept": false }
+    },
+    {
+      "id": "reject-style-code",
+      "raw": "AC00270NX-XY",
+      "expected": { "accept": false }
+    }
+  ]
+}
